@@ -1,4 +1,4 @@
-#### ______________________capstone Project _______________________________#####
+#### ______________________capstone Project _______________________________
 ##the objective of this script is to combine the data from 2020 and 2021 so as 
  ## to answer the how the casual members and members compare differently.
 ##installing packages
@@ -12,10 +12,10 @@ library(ggplot2)
 library(dplyr)
 library(hms)
 
-##____setting the work directory_________##
+##____setting the work directory_________
 setwd("D:/DATA ANALYSIS/GOOGLE DATA ANALYTICS/cyclist_data")
 
-##____________uploading the data set____________________##
+##____________uploading the data set____________________
 JAN_2021 <- read.csv("202101-divvy-tripdata.csv")
 FEB_2021 <- read.csv("202102-divvy-tripdata.csv")
 MARCH_2021 <- read.csv("202103-divvy-tripdata.csv")
@@ -71,16 +71,18 @@ nov_2020 <- mutate(nov_2020,start_station_id=as.character(start_station_id),end_
 dec_2020 <- mutate(dec_2020,start_station_id=as.character(start_station_id),end_station_id=as.character(end_station_id))
 
 ## combining the 2020 data and 2021 data set 
+
 trips_data <-bind_rows(JAN_2021,FEB_2021,MARCH_2021,APR_2021,MAY_2021,JUNE_2021,JULY_2021,AUG_2021,SEP_2021,OCT_2021,NOV_2021,DEC_2021,q1_2020,apr_2020,may_2020,june_2020,july_2020,aug_2020,sep_2020,oct_2020,nov_2020,dec_2020)
 
 
 ##____________dropping variables_________________
+
 trips_data <- trips_data %>% 
   select(-c (start_lat, start_lng, end_lat, end_lng,ride_id,start_station_id,end_station_id))
 str(trips_data)
 
 ##_______________cleaning data and preparing data for analysis____________ 
-##________inspecting the new data frame_____####
+##________inspecting the new data frame_____
 
 colnames(trips_data)
 nrow(trips_data)
@@ -167,7 +169,7 @@ trip_data <- trip_data %>% mutate(season=
                                               month1 == "12" ~ "Winter",
                                               month1 == "01" ~ "Winter",
                                               month1 == "02" ~ "Winter"))                                              
-##_______cleaning the data frame_________##
+##_______cleaning the data frame_________
 ###creating a new data frame since the some entries indicate that the some bikes were taken out of docks and ride length is negative
 trip_data <- na.omit(trip_data)
 trip_data <- distinct(trip_data)
